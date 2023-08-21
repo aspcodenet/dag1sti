@@ -11,6 +11,14 @@ import java.util.List;
 public class ForecastService {
     private static List<Forecast> forecasts = new ArrayList<>();
 
-
+    public List<Forecast> getForecasts(){
+        return forecasts;
+    }
+    public void add(Forecast forecast) {
+        forecasts.add(forecast);
+    }
 }
+
+
+
 

@@ -9,6 +9,7 @@ import se.systementor.dag1.models.BlogPost;
 import se.systementor.dag1.models.Forecast;
 import se.systementor.dag1.services.ForecastService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -78,6 +79,8 @@ public class Dag1Application implements CommandLineRunner {
 				updatePrediction(scan);
 			}
 			else if(sel == 2){
+
+
 				addPrediction(scan);
 			}
 			else if(sel == 9){
@@ -87,7 +90,7 @@ public class Dag1Application implements CommandLineRunner {
 		}
 	}
 
-	private void updatePrediction(Scanner scan) {
+	private void updatePrediction(Scanner scan) throws IOException {
 		listPredictions();
 		System.out.printf("Ange vilken du vill uppdatera:");
 		int num = scan.nextInt() ;
@@ -103,7 +106,7 @@ public class Dag1Application implements CommandLineRunner {
 		forecastService.update(forecast);
 	}
 
-	private void addPrediction(Scanner scan) {
+	private void addPrediction(Scanner scan) throws IOException {
 		//Input på dag, hour, temp
 		//Anropa servicen - Save
 		System.out.println("*** CREATE PREDICTION ***");

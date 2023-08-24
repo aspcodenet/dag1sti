@@ -17,6 +17,13 @@ public class ForecastService {
     public void add(Forecast forecast) {
         forecasts.add(forecast);
     }
+
+    public Forecast getByIndex(int i) {
+        return forecasts.get(i);
+    }
+
+    public void update(Forecast forecast) {
+    }
 }
 
 

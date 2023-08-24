@@ -1,12 +1,15 @@
 package se.systementor.dag1;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import se.systementor.dag1.models.BlogPost;
 import se.systementor.dag1.models.Forecast;
 import se.systementor.dag1.services.ForecastService;
 
+import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -31,6 +34,34 @@ public class Dag1Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
+		var objectMapper = new ObjectMapper();
+
+
+		BlogPost []blogPosts = objectMapper.readValue(new URL("https://jsonplaceholder.typicode.com/posts"),
+				BlogPost[].class);
+
+
+		BlogPost blogPost = objectMapper.readValue(new URL("https://jsonplaceholder.typicode.com/posts/1"),
+				BlogPost.class);
+
+
+
+		var forecast = new Forecast();
+		forecast.setId(UUID.randomUUID());
+		forecast.setTemperature(12f);
+		forecast.setDate(20230101);
+		forecast.setHour(12);
+
+		String json = objectMapper.writeValueAsString(forecast);
+		System.out.println(json);
+
+
+		Forecast forecast2 = objectMapper.readValue(json,Forecast.class);
+
+
+
+
 		var scan = new Scanner(System.in);
 
 		while(true){

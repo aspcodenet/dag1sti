@@ -15,6 +15,7 @@ public class ForecastService {
         return forecasts;
     }
     public void add(Forecast forecast) {
+
         forecasts.add(forecast);
     }
 

@@ -3,12 +3,11 @@ package se.systementor.dag1.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.systementor.dag1.models.Forecast;
 import se.systementor.dag1.services.ForecastService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -35,6 +34,13 @@ public class ForecastController {
         if(forecast.isPresent()) return ResponseEntity.ok(forecast.get());
         return  ResponseEntity.notFound().build();
     }
+
+    @PutMapping("/api/forecasts/{id}")
+    public ResponseEntity<Forecast> Update(@PathVariable UUID id, @RequestBody Forecast forecast) throws IOException {
+        forecastService.update(forecast);
+        return ResponseEntity.ok(forecast);
+    }
+
 
 //    @PutMapping("/api/products/{id}")
 //    public ResponseEntity<Product> Update(@PathVariable UUID id, @RequestBody Product product){

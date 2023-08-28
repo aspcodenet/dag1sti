@@ -72,6 +72,7 @@ public class ForecastService {
     }
 
     public void update(Forecast forecast) throws IOException {
+        //
         writeAllToFile(forecasts);
     }
 

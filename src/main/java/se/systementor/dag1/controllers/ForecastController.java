@@ -31,8 +31,19 @@ public class ForecastController {
 
     @GetMapping("/api/forecasts/{id}")
     public ResponseEntity<Forecast> Get(@PathVariable UUID id){
-        Optional<Forecast> product = forecastService.get(id);
-        if(product.isPresent()) return ResponseEntity.ok(product.get());
+        Optional<Forecast> forecast = forecastService.get(id);
+        if(forecast.isPresent()) return ResponseEntity.ok(forecast.get());
         return  ResponseEntity.notFound().build();
     }
+
+//    @PutMapping("/api/products/{id}")
+//    public ResponseEntity<Product> Update(@PathVariable UUID id, @RequestBody Product product){
+//        boolean status = productService.update(product);
+//        if(status == true)
+//            return ResponseEntity.ok(product);
+//        else
+//            return ResponseEntity.badRequest().build();
+//    }
+
+
 }

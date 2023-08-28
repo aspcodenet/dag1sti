@@ -71,8 +71,12 @@ public class ForecastService {
         return forecasts.get(i);
     }
 
-    public void update(Forecast forecast) throws IOException {
+    public void update(Forecast forecastFromUser) throws IOException {
         //
+        var foreCastInList = get(forecastFromUser.getId()).get();
+        foreCastInList.setTemperature(forecastFromUser.getTemperature());
+        foreCastInList.setDate(forecastFromUser.getDate());
+        foreCastInList.setHour(forecastFromUser.getHour());
         writeAllToFile(forecasts);
     }
 

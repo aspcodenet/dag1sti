@@ -91,6 +91,16 @@ public class Dag1Application implements CommandLineRunner {
 	}
 
 	private void updatePrediction(Scanner scan) throws IOException {
+//		var a = new Forecast();
+//		var b = a;
+//		a.setTemperature(12);
+//		float f  = b.getTemperature();
+//
+//		int y = 12;
+//		int e = y;
+//		e = 19;
+//		System.out.println(y);
+//
 		listPredictions();
 		System.out.printf("Ange vilken du vill uppdatera:");
 		int num = scan.nextInt() ;

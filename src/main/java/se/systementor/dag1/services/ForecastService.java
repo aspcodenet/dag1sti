@@ -10,9 +10,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ForecastService {
@@ -75,6 +73,11 @@ public class ForecastService {
 
     public void update(Forecast forecast) throws IOException {
         writeAllToFile(forecasts);
+    }
+
+    public Optional<Forecast> get(UUID id) {
+        return getForecasts().stream().filter(forecast -> forecast.getId().equals(id))
+                .findFirst();
     }
 }
 

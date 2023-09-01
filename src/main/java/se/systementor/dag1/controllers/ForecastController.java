@@ -10,6 +10,7 @@ import se.systementor.dag1.models.Forecast;
 import se.systementor.dag1.services.ForecastService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,18 +30,33 @@ import java.util.stream.Collectors;
 //4. Spring tar det som funktionen returnerar och gör till JSON
 //5. Spring skickar tillbaka JSON till client
 
+
+// varför gör man det som en stream och inte bara en for loop?
+
 @RestController
 public class ForecastController {
     @Autowired
     private ForecastService forecastService;
     @GetMapping("/api/forecasts")
     public ResponseEntity<List<ForecastListDTO>> getAll(){
-        return new ResponseEntity<List<ForecastListDTO>>(forecastService.getForecasts().stream().map(c->{
+
+//        var ret = new ArrayList<ForecastListDTO>();
+//        for(var c : forecastService.getForecasts()){
+//            var forecastListDTO = new ForecastListDTO();
+//            forecastListDTO.Id = c.getId();
+//            forecastListDTO.Date = c.getDate();
+//            forecastListDTO.Temperature = c.getTemperature();
+//            forecastListDTO.Hour = c.getHour();
+//            ret.add(forecastListDTO);
+//        }
+//        return ret;
+
+        return new ResponseEntity<List<ForecastListDTO>>(forecastService.getForecasts().stream().map(forecast->{
             var forecastListDTO = new ForecastListDTO();
-            forecastListDTO.Id = c.getId();
-            forecastListDTO.Date = c.getDate();
-            forecastListDTO.Temperature = c.getTemperature();
-            forecastListDTO.Hour = c.getHour();
+            forecastListDTO.Id = forecast.getId();
+            forecastListDTO.Date = forecast.getDate();
+            forecastListDTO.Temperature = forecast.getTemperature();
+            forecastListDTO.Hour = forecast.getHour();
             return forecastListDTO;
         }).collect(Collectors.toList()), HttpStatus.OK);
     }

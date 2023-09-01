@@ -62,9 +62,11 @@ public class ForecastService {
     public List<Forecast> getForecasts(){
         return forecasts;
     }
-    public void add(Forecast forecast) throws IOException {
+    public Forecast add(Forecast forecast) throws IOException {
+        forecast.setId(UUID.randomUUID());
         forecasts.add(forecast);
         writeAllToFile(forecasts);
+        return forecast;
     }
 
     public Forecast getByIndex(int i) {

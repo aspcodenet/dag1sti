@@ -28,6 +28,13 @@ public class ForecastController {
         return new ResponseEntity<>(forecastService.getForecasts(), HttpStatus.OK);
     }
 
+//    @deleteGetMapping("/api/forecasts/{id}")
+//    public ResponseEntity<Forecast> Get(@PathVariable UUID id){
+//        Optional<Forecast> forecast = forecastService.get(id);
+//        if(forecast.isPresent()) return ResponseEntity.ok(forecast.get());
+//        return  ResponseEntity.notFound().build();
+//    }
+
     @GetMapping("/api/forecasts/{id}")
     public ResponseEntity<Forecast> Get(@PathVariable UUID id){
         Optional<Forecast> forecast = forecastService.get(id);
@@ -40,6 +47,13 @@ public class ForecastController {
         forecastService.update(forecast);
         return ResponseEntity.ok(forecast);
     }
+
+    @PostMapping("/api/forecasts")
+    public ResponseEntity<Forecast> New( @RequestBody Forecast forecast) throws IOException { // id
+        var newCreated = forecastService.add(forecast);
+        return ResponseEntity.ok(newCreated); // mer REST ful = created (204) samt url till produkten
+    }
+
 
 
 //    @PutMapping("/api/products/{id}")

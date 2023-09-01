@@ -1,26 +1,13 @@
-package se.systementor.dag1.models;
+package se.systementor.dag1.dto;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
 
-public class Forecast {
-    private UUID id;
+
+public class NewForecastDTO {  // DATA TRANSFER OBJECT
     private int date; //20230821
     private int hour;
 
-    private String lastModifiedBy; // "Stefan Holmberg"
-
 
     private float temperature;
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public int getDate() {
         return date;
     }
@@ -45,11 +32,5 @@ public class Forecast {
         this.temperature = temperature;
     }
 
-    public String getLastModifiedBy() {
-        return lastModifiedBy;
-    }
-
-    public void setLastModifiedBy(String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
-    }
 }
+

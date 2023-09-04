@@ -75,12 +75,12 @@ public class ForecastService {
 
     public void update(Forecast forecastFromUser) throws IOException {
         //
-        var foreCastInList = get(forecastFromUser.getId()).get();
-        foreCastInList.setTemperature(forecastFromUser.getTemperature());
-        foreCastInList.setDate(forecastFromUser.getDate());
-        foreCastInList.setHour(forecastFromUser.getHour());
-        foreCastInList.setLastModifiedBy(forecastFromUser.getLastModifiedBy());
-        writeAllToFile(forecasts);
+//        var foreCastInList = get(forecastFromUser.getId()).get();
+//        foreCastInList.setTemperature(forecastFromUser.getTemperature());
+//        foreCastInList.setDate(forecastFromUser.getDate());
+//        foreCastInList.setHour(forecastFromUser.getHour());
+//        foreCastInList.setLastModifiedBy(forecastFromUser.getLastModifiedBy());
+//        writeAllToFile(forecasts);
     }
 
     public Optional<Forecast> get(UUID id) {

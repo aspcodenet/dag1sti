@@ -1,17 +1,32 @@
 package se.systementor.dag1.models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Entity
 public class Forecast {
+
+
     private UUID id;
-    private int date; //20230821
-    private int hour;
+    private LocalDateTime created;
+    private LocalDateTime updated;
+    private float longitude;
+    private float latitude;
+    private LocalDate predictionDatum;
+    private int predictionHour; //8
+    private int predictionTemperature;
+    private boolean rainOrSnow;
+    private DataSource dataSource;
 
-    private String lastModifiedBy; // "Stefan Holmberg"
+    public Forecast(UUID id) {
+        this.id = id;
+        this.created = LocalDateTime.now();
+    }
 
+    public Forecast() {
 
-    private float temperature;
+    }
 
     public UUID getId() {
         return id;
@@ -21,35 +36,75 @@ public class Forecast {
         this.id = id;
     }
 
-    public int getDate() {
-        return date;
+    public LocalDateTime getCreated() {
+        return created;
     }
 
-    public void setDate(int date) {
-        this.date = date;
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
-    public int getHour() {
-        return hour;
+    public float getLongitude() {
+        return longitude;
     }
 
-    public void setHour(int hour) {
-        this.hour = hour;
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
     }
 
-    public float getTemperature() {
-        return temperature;
+    public float getLatitude() {
+        return latitude;
     }
 
-    public void setTemperature(float temperature) {
-        this.temperature = temperature;
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
     }
 
-    public String getLastModifiedBy() {
-        return lastModifiedBy;
+    public LocalDate getPredictionDatum() {
+        return predictionDatum;
     }
 
-    public void setLastModifiedBy(String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
+    public void setPredictionDatum(LocalDate predictionDatum) {
+        this.predictionDatum = predictionDatum;
+    }
+
+    public int getPredictionHour() {
+        return predictionHour;
+    }
+
+    public void setPredictionHour(int predictionHour) {
+        this.predictionHour = predictionHour;
+    }
+
+    public int getPredictionTemperature() {
+        return predictionTemperature;
+    }
+
+    public void setPredictionTemperature(int predictionTemperature) {
+        this.predictionTemperature = predictionTemperature;
+    }
+
+    public boolean isRainOrSnow() {
+        return rainOrSnow;
+    }
+
+    public void setRainOrSnow(boolean rainOrSnow) {
+        this.rainOrSnow = rainOrSnow;
+    }
+
+    public DataSource getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
     }
 }

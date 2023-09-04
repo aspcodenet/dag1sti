@@ -54,9 +54,6 @@ public class ForecastController {
         return new ResponseEntity<List<ForecastListDTO>>(forecastService.getForecasts().stream().map(forecast->{
             var forecastListDTO = new ForecastListDTO();
             forecastListDTO.Id = forecast.getId();
-            forecastListDTO.Date = forecast.getDate();
-            forecastListDTO.Temperature = forecast.getTemperature();
-            forecastListDTO.Hour = forecast.getHour();
             return forecastListDTO;
         }).collect(Collectors.toList()), HttpStatus.OK);
     }
@@ -80,10 +77,10 @@ public class ForecastController {
         // mappa från dto -> entitet
         var forecast = new Forecast();
         forecast.setId(id);
-        forecast.setDate(newForecastDTO.getDate());
-        forecast.setHour(newForecastDTO.getHour());
-        forecast.setTemperature(newForecastDTO.getTemperature());
-        forecast.setLastModifiedBy("Stefan Holmberg");
+//        forecast.setDate(newForecastDTO.getDate());
+//        forecast.setHour(newForecastDTO.getHour());
+//        forecast.setTemperature(newForecastDTO.getTemperature());
+//        forecast.setLastModifiedBy("Stefan Holmberg");
         forecastService.update(forecast);
         return ResponseEntity.ok(forecast);
     }

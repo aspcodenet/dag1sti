@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import se.systementor.dag1.models.BlogPost;
+import se.systementor.dag1.models.DataSource;
 import se.systementor.dag1.models.Forecast;
 import se.systementor.dag1.services.ForecastService;
 
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -36,31 +38,12 @@ public class Dag1Application implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		var objectMapper = new ObjectMapper();
-
-
-		BlogPost []blogPosts = objectMapper.readValue(new URL("https://jsonplaceholder.typicode.com/posts"),
-				BlogPost[].class);
-
-
-		BlogPost blogPost = objectMapper.readValue(new URL("https://jsonplaceholder.typicode.com/posts/1"),
-				BlogPost.class);
-
-
-
-		var forecast = new Forecast();
-		forecast.setId(UUID.randomUUID());
-		forecast.setTemperature(12f);
-		forecast.setDate(20230101);
-		forecast.setHour(12);
-
-		String json = objectMapper.writeValueAsString(forecast);
-		System.out.println(json);
-
-
-		Forecast forecast2 = objectMapper.readValue(json,Forecast.class);
-
-
+//		var forecast = new Forecast();
+//		forecast.setId(UUID.randomUUID());
+//		forecast.setPredictionTemperature(12);
+//		forecast.setPredictionDatum(LocalDate.now());
+//		forecast.setPredictionHour(12);
+//		forecast.setDataSource(DataSource.Console);
 
 
 		var scan = new Scanner(System.in);
@@ -106,13 +89,13 @@ public class Dag1Application implements CommandLineRunner {
 		int num = scan.nextInt() ;
 		var forecast = forecastService.getByIndex(num-1);
 		System.out.printf("%d %d CURRENT: %f %n",
-				forecast.getDate(),
-				forecast.getHour(),
-				forecast.getTemperature()
+				forecast.getPredictionDatum(),
+				forecast.getPredictionHour(),
+				forecast.getPredictionTemperature()
 		);
 		System.out.printf("Ange ny temp:");
-		float temp = scan.nextFloat() ;
-		forecast.setTemperature(temp);
+		var temp = scan.nextInt() ;
+		forecast.setPredictionTemperature(temp);
 		forecastService.update(forecast);
 	}
 
@@ -125,26 +108,27 @@ public class Dag1Application implements CommandLineRunner {
 		System.out.print("Hour:");
 		int hour =  scan.nextInt() ;
 		System.out.print("Temperature:");
-		float temp =  scan.nextFloat() ;
+		var temp =  scan.nextInt() ;
 
 		var forecast = new Forecast();
 		forecast.setId(UUID.randomUUID());
-		forecast.setDate(dag);
-		forecast.setHour(hour);
-		forecast.setTemperature(temp);
+		//forecast.setDate(dag);
+		forecast.setPredictionDatum(LocalDate.now());
+		forecast.setPredictionHour(hour);
+		forecast.setPredictionTemperature(temp);
 
 		forecastService.add(forecast);
 	}
 	private void listPredictions() {
 		int num = 1;
-		for(var forecast : forecastService.getForecasts()){
-			System.out.printf("%d %d %d %f %n",
-					num,
-					forecast.getDate(),
-					forecast.getHour(),
-					forecast.getTemperature()
-					);
-			num++;
-		}
+//		for(var forecast : forecastService.getForecasts()){
+//			System.out.printf("%d %d %d %f %n",
+//					num,
+//					forecast.getDate(),
+//					forecast.getHour(),
+//					forecast.getTemperature()
+//					);
+//			num++;
+//		}
 	}
 }

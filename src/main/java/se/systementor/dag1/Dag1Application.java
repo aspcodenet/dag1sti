@@ -25,29 +25,15 @@ public class Dag1Application implements CommandLineRunner {
 	private  ForecastService forecastService;
 
 	public static void main(String[] args) {
-
-		int i = 12;
-		String namnet = "Stefan";
-		float pi = 3.1415927f;
-		System.out.printf("Jag är %d år jag kallas %s så ni vet %.3f", i, namnet, pi);
-
-
 		SpringApplication.run(Dag1Application.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 
-//		var forecast = new Forecast();
-//		forecast.setId(UUID.randomUUID());
-//		forecast.setPredictionTemperature(12);
-//		forecast.setPredictionDatum(LocalDate.now());
-//		forecast.setPredictionHour(12);
-//		forecast.setDataSource(DataSource.Console);
-
+		forecastService.getAllOnDate(LocalDate.now());
 
 		var scan = new Scanner(System.in);
-
 		while(true){
 			System.out.println("1. List all");
 			System.out.println("2. Create");

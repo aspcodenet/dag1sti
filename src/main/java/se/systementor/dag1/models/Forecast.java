@@ -1,5 +1,10 @@
 package se.systementor.dag1.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -7,7 +12,10 @@ import java.util.UUID;
 @Entity
 public class Forecast {
 
+    private String color;
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.UUID)
     private UUID id;
     private LocalDateTime created;
     private LocalDateTime updated;
@@ -106,5 +114,9 @@ public class Forecast {
 
     public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
+    }
+
+    public String getColor() {
+        return color;
     }
 }
